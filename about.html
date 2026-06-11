@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>About | Radha Singh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0a0a0a;
+  --white:#f9f7f4;
+  --rose:#c4626a;
+  --rose-mid:#e8a0a5;
+  --rose-pale:#f5e8e9;
+  --gray:#888;
+  --border:#e2ddd8;
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+  --mono:'Space Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--white);color:var(--black);overflow-x:hidden;line-height:1.6}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.2rem 3rem;
+  background:rgba(249,247,244,0.95);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.nav-brand{font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--black)}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{
+  font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gray);text-decoration:none;
+  transition:color .2s;
+  position:relative;
+  padding-bottom:4px;
+}
+.nav-links a::after{
+  content:'';
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:1.5px;
+  background-color:var(--rose);
+  transform:scaleX(0);
+  transform-origin:right;
+  transition:transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.nav-links a:hover::after,
+.nav-links a.active::after{
+  transform:scaleX(1);
+  transform-origin:left;
+}
+.nav-links a:hover{color:var(--rose)}
+.nav-links a.active{color:var(--rose)}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.burger span{display:block;width:22px;height:1.5px;background:var(--black);transition:.3s}
+.mob-menu{display:none;position:fixed;inset:0;top:60px;background:var(--white);z-index:190;padding:3rem;flex-direction:column;gap:2rem}
+.mob-menu.open{display:flex}
+.mob-menu a{font-family:var(--serif);font-size:2rem;font-style:italic;color:var(--black);text-decoration:none}
+
+/* HEADER */
+.page-header{
+  padding:10rem 3rem 2rem;
+  max-width:1100px;
+  margin:0 auto;
+}
+.page-header .sec-label{
+  font-family:var(--mono);font-size:.65rem;
+  letter-spacing:.22em;text-transform:uppercase;
+  color:var(--rose);margin-bottom:.8rem;
+  display:block;
+}
+.page-header h1{
+  font-family:var(--serif);
+  font-size:clamp(3rem,7vw,6.5rem);
+  font-weight:900;
+  line-height:.95;
+  color:var(--black);
+  margin-bottom:1rem;
+}
+.page-header h1 em{font-style:italic;color:var(--rose)}
+.rule{width:40px;height:1.5px;background:var(--rose);margin:1rem 0 0}
+
+/* ABOUT EDITORIAL GRID */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 2fr;
+  gap: 6rem;
+  align-items: start;
+  padding: 3rem 3rem 6rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* PHOTO CARD & TAPE */
+.photo-card-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+}
+.photo-card {
+  background: var(--white);
+  padding: 1rem 1rem 3.2rem;
+  border-radius: 4px;
+  box-shadow: 0 12px 36px rgba(0,0,0,0.06);
+  border: 1px solid var(--border);
+  transform: rotate(-3deg);
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease;
+}
+.photo-card:hover {
+  transform: rotate(0deg) scale(1.02);
+  box-shadow: 0 18px 48px rgba(196,98,106,0.12);
+}
+.photo-card img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 2px;
+  border: 1px solid var(--border);
+}
+.photo-card-tape {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%) rotate(2deg);
+  width: 90px;
+  height: 25px;
+  background: rgba(226, 221, 216, 0.6);
+  backdrop-filter: blur(2px);
+  border-left: 1px dashed rgba(0,0,0,0.08);
+  border-right: 1px dashed rgba(0,0,0,0.08);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+  z-index: 2;
+}
+
+/* DETAILS BLOCK */
+.personal-details-block {
+  margin-top: 3rem;
+  padding-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  color: var(--gray);
+}
+.detail-icon {
+  font-size: 1.1rem;
+  color: var(--rose);
+  width: 24px;
+  text-align: center;
+}
+
+/* CONTENT RIGHT */
+.about-intro-title {
+  font-family: var(--serif);
+  font-size: clamp(2.4rem, 4vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--black);
+  margin-bottom: 2rem;
+}
+.about-intro-title em {
+  font-style: italic;
+  color: var(--rose);
+}
+.about-body p {
+  font-size: 0.95rem;
+  line-height: 1.9;
+  color: #444;
+  margin-bottom: 1.5rem;
+}
+.about-body p strong {
+  color: var(--black);
+}
+
+/* VISUAL CARDS */
+.info-cards-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.info-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  padding: 1.8rem;
+  border-radius: 12px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.info-card:hover {
+  border-color: var(--rose-mid);
+  box-shadow: 0 8px 24px rgba(196,98,106,0.06);
+}
+.info-card-title {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--rose);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.fun-fact-text {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.3rem;
+  color: var(--black);
+}
+.hobbies-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.hobby-tag {
+  padding: 0.4rem 1rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-family: var(--sans);
+  color: var(--black);
+  transition: all 0.25s ease;
+}
+.hobby-tag:hover {
+  background: var(--black);
+  color: var(--white);
+  border-color: var(--black);
+}
+
+/* HORIZONTAL MOMENTS */
+.gallery-section {
+  padding: 6rem 3rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.gallery-title {
+  font-family: var(--serif);
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: var(--black);
+}
+.moments-carousel {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 2rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--rose-mid) transparent;
+}
+.moments-carousel::-webkit-scrollbar {
+  height: 6px;
+}
+.moments-carousel::-webkit-scrollbar-track {
+  background: transparent;
+}
+.moments-carousel::-webkit-scrollbar-thumb {
+  background: var(--rose-pale);
+  border-radius: 10px;
+  transition: background 0.3s;
+}
+.moments-carousel::-webkit-scrollbar-thumb:hover {
+  background: var(--rose-mid);
+}
+.moment-card {
+  flex-shrink: 0;
+  width: 320px;
+  height: 240px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  scroll-snap-align: start;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.moment-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 32px rgba(196,98,106,0.12);
+}
+.moment-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* SAY HELLO BOTTOM SECTION */
+#hello-section{
+  background:var(--white);
+  padding:6rem 3rem 0;
+  position:relative;
+  overflow:hidden;
+}
+.hello-inner{
+  max-width:1100px;
+  margin:0 auto;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:3rem;
+}
+.hello-text-block{
+  padding-bottom:5rem;
+  flex:1;
+}
+.hello-big{
+  font-family:var(--serif);
+  font-size:clamp(3.5rem,8vw,7rem);
+  font-weight:900;
+  line-height:1;
+  color:var(--black);
+  margin-bottom:1.5rem;
+}
+.hello-big em{
+  font-style:italic;
+  color:var(--rose);
+}
+.hello-links{
+  display:flex;
+  gap:2rem;
+  flex-wrap:wrap;
+  align-items:center;
+}
+.hello-links a{
+  font-family:var(--mono);
+  font-size:.72rem;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  color:var(--gray);
+  text-decoration:none;
+  transition:color .2s;
+}
+.hello-links a:hover{color:var(--rose)}
+.hello-email{
+  display:block;
+  font-family:var(--mono);
+  font-size:.8rem;
+  letter-spacing:.08em;
+  color:var(--black);
+  text-decoration:none;
+  margin-bottom:1.5rem;
+  transition:color .2s;
+}
+.hello-email:hover{color:var(--rose)}
+
+.hello-photo{
+  flex-shrink:0;
+  width:460px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  position:relative;
+}
+.hello-photo img{
+  width:100%;
+  display:block;
+  object-fit:contain;
+  object-position:center bottom;
+}
+
+/* FOOTER */
+footer{
+  background:var(--black);color:rgba(249,247,244,.3);
+  text-align:center;padding:2rem;
+  font-family:var(--mono);font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;
+}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem}
+  .nav-links{display:none}
+  .burger{display:flex}
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+    padding: 2rem 1.5rem 4rem;
+  }
+  .photo-card-wrap {
+    max-width: 280px;
+  }
+  .personal-details-block {
+    margin-top: 2rem;
+    align-items: center;
+    padding-left: 0;
+  }
+  .detail-item {
+    justify-content: center;
+  }
+  .about-intro-title {
+    text-align: center;
+  }
+  .gallery-section {
+    padding: 4rem 1.5rem;
+  }
+  .moment-card {
+    width: 280px;
+    height: 210px;
+  }
+  .hello-inner{flex-direction:column;align-items:center;text-align:center}
+  .hello-text-block{padding-bottom:2rem}
+  .hello-links{justify-content:center}
+  .hello-photo{width:320px}
+  #hello-section{padding:4rem 1.5rem 0}
+}
+
+/* Cursor ring */
+.custom-cursor-ring {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid var(--rose);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: left 0.08s cubic-bezier(0.25, 0.8, 0.25, 1),
+              top 0.08s cubic-bezier(0.25, 0.8, 0.25, 1),
+              width 0.3s ease,
+              height 0.3s ease,
+              background-color 0.3s ease,
+              border-color 0.3s ease;
+  opacity: 0;
+}
+body:hover .custom-cursor-ring {
+  opacity: 0.5;
+}
+.custom-cursor-ring.hover {
+  width: 38px;
+  height: 38px;
+  background-color: rgba(196, 98, 106, 0.08);
+  border-color: var(--rose-mid);
+  opacity: 0.9;
+}
+@media(prefers-reduced-motion: reduce) {
+  .custom-cursor-ring {
+    display: none !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="nav-brand">Radha Singh</a>
+  <ul class="nav-links">
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="index.html#experience">Experience</a></li>
+    <li><a href="index.html#education">Education</a></li>
+    <li><a href="index.html#projects">Projects</a></li>
+    <li><a href="samples.html">Samples</a></li>
+    <li><a href="index.html#skills">Skills</a></li>
+    <li><a href="index.html#achievements">Achievements</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <button class="burger" id="burger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mob-menu" id="mobMenu">
+  <a href="about.html">About</a>
+  <a href="index.html#experience">Experience</a>
+  <a href="index.html#education">Education</a>
+  <a href="index.html#projects">Projects</a>
+  <a href="samples.html">Samples</a>
+  <a href="index.html#skills">Skills</a>
+  <a href="index.html#achievements">Achievements</a>
+  <a href="index.html#contact">Contact</a>
+</div>
+
+<!-- HEADER -->
+<div class="page-header">
+  <span class="sec-label">My Area</span>
+  <h1>Hello there! I'm<br/><em>Radha.</em></h1>
+  <div class="rule"></div>
+</div>
+
+<!-- ABOUT GRID -->
+<div class="about-grid">
+  <!-- Left Side: Polaroid Card & Basic Info -->
+  <div class="reveal">
+    <div class="photo-card-wrap">
+      <div class="photo-card-tape"></div>
+      <div class="photo-card">
+        <img src="radha.png" alt="Radha Singh Portrait"/>
+      </div>
+    </div>
+    <div class="personal-details-block">
+      <div class="detail-item">
+        <span class="detail-icon">🎓</span>
+        <span>Ramdeobaba University, CSE '28</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-icon">📍</span>
+        <span>Nagpur, Maharashtra, India</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-icon">🗣️</span>
+        <span>English, Hindi</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Side: Wording & Fun Cards -->
+  <div class="reveal d2">
+    <div class="about-body">
+      <p>
+        I'm a B.Tech CSE student at Ramdeobaba University who lives comfortably at the 
+        intersection of design and technology. I started with awareness posts for an NGO, built an 
+        online business from scratch, and ended up designing product content for a real SaaS agency — 
+        all before finishing second year.
+      </p>
+      <p>
+        Right now I'm interning at <strong>Eighty8 Studio</strong>, a digital product agency, creating 
+        social media content and design for their 1Click ERP product. As Graphics Co-Lead at ACM-W RBU, 
+        I translate ideas into visual communication that actually lands.
+      </p>
+      <p>
+        Outside the screen, I sometimes write poetry — snapshots from lived experience or just wherever 
+        my imagination wanders. I believe the same instinct that makes a good poem makes a good design: 
+        economy of words, precision of feeling.
+      </p>
+    </div>
+
+    <!-- Personal details cards (Fun Fact, Hobbies) -->
+    <div class="info-cards-container">
+      <div class="info-card">
+        <div class="info-card-title">✨ Fun Fact</div>
+        <div class="fun-fact-text">"I capture sky photos endlessly."</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title">🎨 My Hobbies</div>
+        <div class="hobbies-tags">
+          <span class="hobby-tag">Reading novels 📚</span>
+          <span class="hobby-tag">Listening to Jagjit Singh songs 🎵</span>
+          <span class="hobby-tag">Trying out recipes 🍳</span>
+          <span class="hobby-tag">Travelling ✈️</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MOMENTS GALLERY -->
+<div class="gallery-section reveal">
+  <div class="gallery-title">Some of my moments</div>
+  <div class="moments-carousel">
+    <div class="moment-card"><img src="aboutme_01.jpeg" alt="Personal moment snapshot 1"/></div>
+    <div class="moment-card"><img src="aboutme_02.jpeg" alt="Personal moment snapshot 2"/></div>
+    <div class="moment-card"><img src="aboutme_03.jpeg" alt="Personal moment snapshot 3"/></div>
+    <div class="moment-card"><img src="aboutme_04.jpeg" alt="Personal moment snapshot 4"/></div>
+    <div class="moment-card"><img src="aboutme_05.jpeg" alt="Personal moment snapshot 5"/></div>
+    <div class="moment-card"><img src="aboutme_06.jpeg" alt="Personal moment snapshot 6"/></div>
+    <div class="moment-card"><img src="aboutme_07.jpeg" alt="Personal moment snapshot 7"/></div>
+  </div>
+</div>
+
+<!-- SAY HELLO BOTTOM SECTION -->
+<div id="hello-section">
+  <div class="hello-inner">
+    <div class="hello-text-block reveal">
+      <div class="hello-big">Say <em>hello!</em></div>
+      <a href="mailto:radhasingh17299@gmail.com" class="hello-email">radhasingh17299@gmail.com</a>
+      <div class="hello-links">
+        <a href="https://linkedin.com/in/radha-singh-119a41318" target="_blank" rel="noopener">LinkedIn</a>
+        <span style="color:var(--border)">·</span>
+        <a href="https://www.instagram.com/radhas_reverie/" target="_blank" rel="noopener">Instagram</a>
+        <span style="color:var(--border)">·</span>
+        <a href="samples.html">Design Samples</a>
+      </div>
+    </div>
+    <div class="hello-photo reveal d2">
+      <img src="bgremovedradhaport.png" alt="Radha Singh illustration"/>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>Radha Singh &nbsp;·&nbsp; Nagpur, MH &nbsp;·&nbsp; 2026</p>
+</footer>
+
+<script>
+const burger=document.getElementById('burger');
+const mob=document.getElementById('mobMenu');
+burger.addEventListener('click',()=>mob.classList.toggle('open'));
+mob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mob.classList.remove('open')));
+
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}}),{threshold:.05});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// Trailing Cursor Ring
+if (window.matchMedia('(pointer: fine)').matches) {
+  const ring = document.createElement('div');
+  ring.className = 'custom-cursor-ring';
+  ring.style.left = '-100px';
+  ring.style.top = '-100px';
+  document.body.appendChild(ring);
+  
+  document.addEventListener('mousemove', (e) => {
+    ring.style.left = `${e.clientX}px`;
+    ring.style.top = `${e.clientY}px`;
+  });
+  
+  const interactives = document.querySelectorAll('a, button, input, textarea, .card, .proj-card, .moment-card, .edu-card, .ach-card, .hero-name, .exp-item, .info-card, .hobby-tag');
+  interactives.forEach(el => {
+    el.addEventListener('mouseenter', () => ring.classList.add('hover'));
+    el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
+  });
+}
+</script>
+</body>
+</html>
