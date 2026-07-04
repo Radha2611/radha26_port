@@ -221,6 +221,11 @@ section{padding:7rem 3rem}
 .proj-name{font-family:var(--serif);font-size:1.5rem;font-weight:700;color:var(--black);margin-bottom:.4rem;line-height:1.2}
 .proj-collab{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);margin-bottom:.8rem}
 .proj-desc{font-size:.88rem;color:#555;line-height:1.8}
+.proj-header{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:.8rem}
+.proj-logo{width:48px;height:48px;border-radius:10px;object-fit:cover;border:1px solid var(--border);flex-shrink:0}
+.proj-links{display:flex;gap:1.2rem;margin-top:1.2rem}
+.proj-link{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--rose);text-decoration:none;font-weight:600;transition:color .2s}
+.proj-link:hover{color:var(--rose-mid)}
 
 /* SKILLS */
 .skills-layout{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
@@ -660,7 +665,7 @@ body:hover .custom-cursor-ring {
   <div class="container">
     <p class="sec-label reveal">Projects</p>
     <div class="rule"></div>
-    <h2 class="sec-title reveal">Built with<br/><em>teams.</em></h2>
+    <h2 class="sec-title reveal">Things I've<br/><em>built.</em></h2>
     <div class="proj-grid">
       <div class="proj-card reveal">
         <div class="proj-tag">SocialImpact · Hackathon</div>
@@ -673,6 +678,26 @@ body:hover .custom-cursor-ring {
         </div>
       </div>
       <div class="proj-card reveal d1">
+        <div class="proj-header">
+          <div>
+            <div class="proj-tag">Productivity · Mobile App</div>
+            <div class="proj-name">LockIn</div>
+          </div>
+          <img src="lockin-logo.png.png" alt="LockIn Logo" class="proj-logo"/>
+        </div>
+        <div class="proj-collab">Personal project</div>
+        <div class="proj-desc">
+          A lightweight, local-first Pomodoro focus timer app built with React Native and Expo (SDK 54). 
+          Features an interactive virtual companion panda named Miru with 5 animated mood states, 
+          app state detection for tracking away-time and distractions, looped video backgrounds, 
+          and focus soundtracks.
+        </div>
+        <div class="proj-links">
+          <a href="https://tantantara.substack.com/p/03db18ba-5667-4445-a01a-93854fcc4055" target="_blank" rel="noopener" class="proj-link">Read on Substack ↗</a>
+          <a href="https://expo.dev/accounts/radhas_reverie/projects/lockin/builds/7cea97df-5d1e-4f87-8ace-8091314d8fba" target="_blank" rel="noopener" class="proj-link">Download App ↗</a>
+        </div>
+      </div>
+      <div class="proj-card reveal d2">
         <div class="proj-tag">IoT · Academic</div>
         <div class="proj-name">Smart Inventory System</div>
         <div class="proj-collab">Team college project</div>
